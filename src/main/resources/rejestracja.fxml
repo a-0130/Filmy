@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="projektFilmy.Kontroler.RejestracjaKontroler"
+      spacing="15"
+      alignment="CENTER"
+      stylesheets="@style.css"
+      prefWidth="500" prefHeight="420">
+
+    <padding>
+        <Insets top="100" bottom="20" left="100" right="100"/>
+    </padding>
+
+    <Label text="Rejestracja" style="-fx-font-size: 18px; -fx-font-weight: bold" />
+
+    <TextField fx:id="loginField" promptText="Login" />
+    <PasswordField fx:id="hasloField" promptText="Haslo" />
+    <PasswordField fx:id="powtorzHasloField" promptText="Powtorz haslo" />
+
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Zarejestruj" onAction="#zarejestruj" />
+        <Button text="Anuluj" onAction="#anuluj" />
+    </HBox>
+
+    <Label fx:id="komunikatLabel" wrapText="true" />
+
+</VBox>

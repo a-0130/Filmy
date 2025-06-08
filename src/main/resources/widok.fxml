@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="projektFilmy.Kontroler.FilmyKontroler"
+            style="-fx-background-color: linear-gradient(to bottom, #f7c1d4, #e08dab); -fx-padding: 15;">
+
+    <top>
+        <Label text="Filmy"
+               style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #4a1c2d;"
+               BorderPane.alignment="CENTER"/>
+    </top>
+
+    <center>
+        <VBox spacing="12" alignment="CENTER">
+            <!-- Tabela filmów -->
+            <TableView fx:id="filmTable"
+                       prefHeight="260"
+                       style="-fx-background-color: #f8bcd0; -fx-border-color: transparent ; -fx-background-radius: 10;">
+                <columns>
+                    <TableColumn fx:id="tytulColumn" text="Tytul"/>
+                    <TableColumn fx:id="rezyserColumn" text="Rezyser"/>
+                    <TableColumn fx:id="rokColumn" text="Rok"/>
+                    <TableColumn fx:id="czasTrwaniaColumn" text="Czas trwania"/>
+                    <TableColumn fx:id="ocenaColumn" text="Ocena"/>
+                    <TableColumn fx:id="kategoriaColumn" text="Kategoria"/>
+                </columns>
+            </TableView>
+
+            <!-- Formularz + przyciski -->
+            <HBox spacing="20" alignment="CENTER">
+                <GridPane hgap="12" vgap="8"
+                          style="-fx-background-color: #f8bcd0; -fx-background-radius: 12; -fx-padding: 15;">
+
+                    <Label text="Tytul:" GridPane.rowIndex="0" GridPane.columnIndex="0" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #ffffff;  "/>
+                    <TextField fx:id="tytulField" GridPane.rowIndex="0" GridPane.columnIndex="1"
+                               style="-fx-pref-height: 24;"/>
+
+                    <Label text="Rezyser:" GridPane.rowIndex="0" GridPane.columnIndex="2" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #ffffff"/>
+                    <ComboBox fx:id="rezyserCombo" GridPane.rowIndex="0" GridPane.columnIndex="3"
+                              style="-fx-pref-height: 24;" prefWidth="180"/>
+
+                    <Label text="Rok:" GridPane.rowIndex="1" GridPane.columnIndex="0" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #ffffff"/>
+                    <TextField fx:id="rokField" GridPane.rowIndex="1" GridPane.columnIndex="1"
+                               style="-fx-pref-height: 24;"/>
+
+                    <Label text="Czas trwania:" GridPane.rowIndex="1" GridPane.columnIndex="2" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #ffffff"/>
+                    <TextField fx:id="czasTrwaniaField" GridPane.rowIndex="1" GridPane.columnIndex="3"
+                               style="-fx-pref-height: 24;"/>
+
+                    <Label text="Ocena:" GridPane.rowIndex="2" GridPane.columnIndex="0" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #ffffff"/>
+                    <TextField fx:id="ocenaField" GridPane.rowIndex="2" GridPane.columnIndex="1"
+                               promptText="0–10" style="-fx-pref-height: 24;"/>
+
+
+                    <Label text="Kategoria:" GridPane.rowIndex="2" GridPane.columnIndex="2" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #ffffff"/>
+                    <ComboBox fx:id="kategoriaCombo" GridPane.rowIndex="2" GridPane.columnIndex="3"
+                              style="-fx-pref-height: 24;" prefWidth="180"/>
+                    <Label fx:id="komunikatLabel" textFill="#ff005e" wrapText="true" maxWidth="600" prefHeight="40" GridPane.rowIndex="3"
+                           GridPane.columnIndex="0" GridPane.columnSpan="4" style="-fx-font-weight: bold"/>
+                </GridPane>
+
+                <!-- Panel przycisków -->
+                <VBox spacing="10" alignment="CENTER"
+                      style="-fx-background-color: #e089a1; -fx-background-radius: 12; -fx-padding: 16;">
+                    <Button text="Dodaj" onAction="#dodajFilm"
+                            style="-fx-background-color: #a73460; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-pref-width: 90;"/>
+                    <Button text="Edytuj" onAction="#edytujFilm"
+                            style="-fx-background-color: #d47898; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-pref-width: 90;"/>
+                    <Button text="Usun" onAction="#usunFilm"
+                            style="-fx-background-color: #f3c2d4; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-pref-width: 90;"/>
+                    <Button text="Usuń reżysera"
+                            onAction="#usunRezysera"
+                            style="-fx-background-color: #ae5074; -fx-text-fill: white; -fx-background-radius: 8; -fx-font-weight: bold;"
+                            GridPane.rowIndex="0" GridPane.columnIndex="4"/>
+                    <Button text="Usuń kategorię"
+                            onAction="#usunKategorie"
+                            style="-fx-background-color: #c6577f; -fx-text-fill: white; -fx-background-radius: 8; -fx-font-weight: bold;"
+                            GridPane.rowIndex="2" GridPane.columnIndex="4"/>
+
+
+
+                </VBox>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>
