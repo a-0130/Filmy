@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="projektFilmy.Kontroler.LogowanieKontroler"
+      spacing="15"
+      alignment="CENTER"
+      stylesheets="@style.css"
+      prefWidth="500" prefHeight="420">
+
+    <padding>
+        <Insets top="100" bottom="20" left="100" right="100"/>
+    </padding>
+
+    <Label text="Logowanie" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+    <TextField fx:id="loginField" promptText="Login"/>
+    <PasswordField fx:id="hasloField" promptText="Haslo"/>
+
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Zaloguj" onAction="#zaloguj"/>
+        <Button text="Zarejestruj sie" onAction="#zarejestruj"/>
+    </HBox>
+
+    <Label fx:id="komunikatLabel" wrapText="true"/>
+
+</VBox>

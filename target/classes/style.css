@@ -1,0 +1,53 @@
+.root {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-background-color: #F8BCD0FF;
+    -fx-background-image: url("/images/kot.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size: 450px;
+}
+
+.label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #000000;
+}
+
+.text-field, .password-field, .combo-box {
+    -fx-pref-width: 220px;
+    -fx-padding: 5px;
+    -fx-background-color: rgb(255, 255, 255);
+    -fx-border-color: #bfbfbf;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+}
+
+.button {
+    -fx-background-color: rgb(234, 125, 160);
+    -fx-text-fill: rgb(255, 255, 255);
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-border-radius: 4px;
+    -fx-pref-width: 120px;
+    -fx-pref-height: 40px;
+    -fx-background-radius: 4px;
+    -fx-padding: 6 12;
+}
+
+.button:hover {
+    -fx-background-color: #a2c2e7;
+}
+
+.table-view {
+    -fx-border-color: #f1dae1;
+    -fx-background-color: #fafafa;
+    -fx-table-cell-border-color: #e0e0e0;
+}
+
+.table-column {
+    -fx-alignment: CENTER_LEFT;
+}
+
+.label#komunikatLabel {
+    -fx-text-fill: #ff005e;
+    -fx-font-weight: bold;
+}

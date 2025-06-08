@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+
+        <!-- Połączenie z bazą danych PostgreSQL -->
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/bazaFilmy</property>
+        <property name="hibernate.connection.username">baza_filmy_haslo</property>
+        <property name="hibernate.connection.password">bazadanych</property>
+
+        <!-- Dialekt PostgreSQL -->
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+
+        <!-- Pokazuj zapytania SQL w konsoli -->
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+
+        <!-- Automatyczne tworzenie tabel: validate / update / create / create-drop -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+
+        <!-- Mapowanie klas encji -->
+        <mapping class="projektFilmy.baza.Film"/>
+        <mapping class="projektFilmy.baza.Kategoria"/>
+        <mapping class="projektFilmy.baza.Rezyser"/>
+        <mapping class="projektFilmy.baza.Uzytkownik"/>
+
+
+    </session-factory>
+</hibernate-configuration>
