@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane stylesheets="@style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="projektFilmy.Kontroler.UsunKategorieKontroler">
+
+    <padding>
+        <Insets bottom="80" left="20" right="20" top="50" />
+    </padding>
+
+    <top>
+        <HBox alignment="BASELINE_CENTER">
+            <Label style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #4a1c2d;" text="Kategoria" />
+        </HBox>
+    </top>
+
+    <center>
+        <VBox alignment="CENTER" spacing="20">
+            <HBox alignment="CENTER" spacing="40">
+                <VBox alignment="CENTER" spacing="10">
+                    <Label text="Dodaj nową kategorię:" />
+                    <TextField fx:id="nazwaField" promptText="Nazwa" style="-fx-pref-width: 200px; -fx-pref-height: 30px;" />
+                    <Button onAction="#dodajKategorie" style="-fx-pref-width: 200px; -fx-pref-height: 30px;" text="Dodaj Kategorię" />
+                </VBox>
+
+                <VBox alignment="CENTER" spacing="10">
+                    <Label text="Wybierz kategorię do usunięcia:" />
+                    <ComboBox fx:id="kategoriaComboBox" style="-fx-pref-width: 200px; -fx-pref-height: 30px;" />
+                    <Button onAction="#usunKategorie" style="-fx-pref-width: 200px; -fx-pref-height: 30px;" text="Usuń Kategorię" />
+                </VBox>
+            </HBox>
+
+            <VBox alignment="CENTER" spacing="10">
+                <Label fx:id="komunikatLabel" style="-fx-text-fill: #ff005e;" wrapText="true" />
+                <Button onAction="#anulujKategorie" style="-fx-pref-width: 200px; -fx-pref-height: 30px;" text="Wróć do spisu filmów" />
+            </VBox>
+        </VBox>
+    </center>
+
+</BorderPane>

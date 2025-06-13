@@ -29,3 +29,7 @@
     <Label fx:id="komunikatLabel" wrapText="true"/>
 
 </VBox>
+
+
+
+

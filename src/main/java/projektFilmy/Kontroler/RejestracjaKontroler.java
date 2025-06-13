@@ -61,13 +61,10 @@ public class RejestracjaKontroler {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/logowanie.fxml"));
             Parent root = loader.load();
-
             Stage stage = (Stage) loginField.getScene().getWindow();
             Scene scene = new Scene(root);
-            scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
             stage.setScene(scene);
         } catch (Exception e) {
-            e.printStackTrace();
             komunikatLabel.setText("Blad powrotu do logowania.");
         }
     }

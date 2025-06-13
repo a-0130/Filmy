@@ -6,7 +6,7 @@ import jakarta.persistence.*; // @Entity, @Table....
 @Table(name = "filmy") // Nazwa tabeli w bazie danych, do której ta klasa jest przypisana
 public class Film {
 
-    @Id // Określa pole jako klucz główny (primary key)
+    @Id // Określa pole jako klucz główny
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Autoinkrementacja w bazie danych
     private Long id;
 

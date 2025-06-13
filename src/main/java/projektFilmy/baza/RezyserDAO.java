@@ -13,7 +13,6 @@ public class RezyserDAO {
             return session.createQuery("from Rezyser", Rezyser.class).list();
         }
     }
-    // Zwraca istniejącego reżysera, jeśli istnieje; w przeciwnym razie dodaje nowego do bazy
     public static Rezyser znajdzLubDodaj(String tekst) {
 
         // Przeszukiwanie istniejących reżyserów po imieniu i nazwisku
@@ -39,34 +38,57 @@ public class RezyserDAO {
         }
         return nowy;
     }
+    public static boolean dodaj(String tekst) {
+        // Sprawdź, czy reżyser już istnieje
+        for (Rezyser r : pobierzWszystkich()) {
+            if ((r.getImie() + " " + r.getNazwisko()).equalsIgnoreCase(tekst)) {
+                return false; // rezyser istnieje
+            }
+        }
+
+        // Rozdzielenie tekstu na imię i nazwisko
+        String[] czesci = tekst.trim().split(" ", 2);
+        String imie = czesci.length > 0 ? czesci[0] : "";
+        String nazwisko = czesci.length > 1 ? czesci[1] : "";
+
+        // Dodaj nowego reżysera
+        Rezyser nowy = new Rezyser();
+        nowy.setImie(imie);
+        nowy.setNazwisko(nazwisko);
+
+        try (Session session = KonfiguracjaHibernate.getSessionFactory().openSession()) {
+            Transaction tx = session.beginTransaction();
+            session.persist(nowy);
+            tx.commit();
+        }
+
+        return true;
+    }
+
 
     // Usuwa reżysera z bazy danych, ale tylko jeśli nie ma przypisanych filmów
-    public static void usun(String tekst) {
+    public static boolean usun(String tekst) {
         try (Session session = KonfiguracjaHibernate.getSessionFactory().openSession()) {
-
-            // HQL: Szukanie reżysera po pełnym imieniu i nazwisku (ignorując wielkość liter)
             Rezyser znaleziony = session.createQuery(
                             "from Rezyser r where lower(concat(r.imie, ' ', r.nazwisko)) = :tekst", Rezyser.class)
                     .setParameter("tekst", tekst.toLowerCase())
-                    .uniqueResult(); // Zwraca pojedynczy wynik lub null
+                    .uniqueResult();
 
-            if (znaleziony == null) return; // Nie znaleziono – nic nie robi
+            if (znaleziony == null) return false;
 
-            // HQL: Liczy, ile filmów ma przypisanych dany reżyser
             Long ileFilmow = session.createQuery(
                             "select count(f) from Film f where f.rezyser.id = :id", Long.class)
                     .setParameter("id", znaleziony.getId())
                     .uniqueResult();
 
-            // Jeśli reżyser nie ma żadnych filmów – usuń go z bazy
             if (ileFilmow != null && ileFilmow == 0) {
                 Transaction tx = session.beginTransaction();
-
-                // Usunięcie reżysera – jeśli nie jest w kontekście sesji, trzeba użyć merge()
                 session.remove(session.contains(znaleziony) ? znaleziony : session.merge(znaleziony));
-
                 tx.commit();
+                return true;
             }
         }
+        return false;
     }
+
 }

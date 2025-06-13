@@ -33,33 +33,50 @@ public class KategoriaDAO {
         }
         return nowa;
     }
+    public static boolean dodaj(String nazwa) {
+        for (Kategoria k : pobierzWszystkie()) {
+            if (k.getNazwa().equalsIgnoreCase(nazwa)) {
+                return false;
+            }
+        }
 
-    // Usuwa kategorię o podanej nazwie, ale tylko jeśli nie jest przypisana do żadnego filmu
-    public static void usun(String tekst) {
+        Kategoria nowa = new Kategoria();
+        nowa.setNazwa(nazwa);
+
         try (Session session = KonfiguracjaHibernate.getSessionFactory().openSession()) {
-            // HQL: wyszukiwanie kategorii po nazwie (z małych liter, by było niewrażliwe na wielkość)
+            Transaction tx = session.beginTransaction();
+            session.persist(nowa);
+            tx.commit();
+        }
+
+        return true;
+    }
+
+    public static boolean usun(String nazwa) {
+        try (Session session = KonfiguracjaHibernate.getSessionFactory().openSession()) {
             Kategoria znaleziona = session.createQuery(
-                            "from Kategoria k where lower(k.nazwa) = :tekst", Kategoria.class)
-                    .setParameter("tekst", tekst.toLowerCase())
-                    .uniqueResult(); // Zwraca jeden wynik lub null
+                            "from Kategoria k where lower(k.nazwa) = :nazwa", Kategoria.class)
+                    .setParameter("nazwa", nazwa.toLowerCase())
+                    .uniqueResult();
 
-            if (znaleziona == null) return; // Jeśli nie znaleziono – zakończ
+            if (znaleziona == null) return false;
 
-            // HQL: policz ile filmów przypisanych jest do tej kategorii
             Long ileFilmow = session.createQuery(
                             "select count(f) from Film f where f.kategoria.id = :id", Long.class)
                     .setParameter("id", znaleziona.getId())
                     .uniqueResult();
 
-            // Jeśli brak filmów – można bezpiecznie usunąć kategorię
-            if (ileFilmow == 0) {
+            if (ileFilmow != null && ileFilmow == 0) {
                 Transaction tx = session.beginTransaction();
-                // Jeśli encja nie jest zarządzana przez sesję, użyj merge()
                 session.remove(session.contains(znaleziona) ? znaleziona : session.merge(znaleziona));
                 tx.commit();
+                return true;
             }
         }
+
+        return false;
     }
+
 }
 
 

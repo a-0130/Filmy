@@ -12,15 +12,6 @@
     -fx-text-fill: #000000;
 }
 
-.text-field, .password-field, .combo-box {
-    -fx-pref-width: 220px;
-    -fx-padding: 5px;
-    -fx-background-color: rgb(255, 255, 255);
-    -fx-border-color: #bfbfbf;
-    -fx-border-radius: 4px;
-    -fx-background-radius: 4px;
-}
-
 .button {
     -fx-background-color: rgb(234, 125, 160);
     -fx-text-fill: rgb(255, 255, 255);
@@ -28,7 +19,7 @@
     -fx-font-weight: bold;
     -fx-border-radius: 4px;
     -fx-pref-width: 120px;
-    -fx-pref-height: 40px;
+    -fx-pref-height: 30px;
     -fx-background-radius: 4px;
     -fx-padding: 6 12;
 }
@@ -41,6 +32,15 @@
     -fx-border-color: #f1dae1;
     -fx-background-color: #fafafa;
     -fx-table-cell-border-color: #e0e0e0;
+}
+
+.text-field, .password-field, .combo-box {
+    -fx-pref-width: 220px;
+    -fx-padding: 5px;
+    -fx-background-color: rgb(255, 255, 255);
+    -fx-border-color: #bfbfbf;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
 }
 
 .table-column {

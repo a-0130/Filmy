@@ -3,20 +3,19 @@ package projektFilmy.Kontroler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.*;
 import javafx.stage.Stage;
 import projektFilmy.baza.UzytkownikDAO;
 
 public class LogowanieKontroler {
 
     @FXML private TextField loginField;
-    @FXML private PasswordField hasloField;
+    @FXML private PasswordField hasloField; // pole tekstowe (ukryte znaki) hasła, w którym użytkownik wpisuje hasło
     @FXML private Label komunikatLabel;
 
     @FXML
     private void zaloguj() {
-        String login = loginField.getText().trim();
+        String login = loginField.getText().trim(); // Pobiera tekst wpisany przez użytkownika w polu login i usuwa spacje z początku i końca.
         String haslo = hasloField.getText().trim();
 
         if (!czyPoprawneDane(login, haslo)) {
@@ -33,12 +32,11 @@ public class LogowanieKontroler {
     @FXML
     private void zarejestruj() {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/rejestracja.fxml"));
-            Stage stage = (Stage) loginField.getScene().getWindow();
-            stage.setScene(new Scene(root));
+            Parent root = FXMLLoader.load(getClass().getResource("/rejestracja.fxml")); // laduje plik fxml do rejestracji
+            Stage stage = (Stage) loginField.getScene().getWindow(); // pobiera scenę z okna logowania aby mozna zamienic 
+            stage.setScene(new Scene(root)); // ustawia scenę z pliku fxml do rejestracji
         } catch (Exception e) {
-            e.printStackTrace();
-            komunikatLabel.setText("Blad otwierania okna rejestracji.");
+            komunikatLabel.setText("Blad otwierania okna rejestracji."); 
         }
     }
 
@@ -48,7 +46,7 @@ public class LogowanieKontroler {
             return false;
         }
 
-        if (!login.matches("[A-Za-z0-9._-]{3,20}")) {
+        if (!login.matches("[A-Za-z0-9._-]{3,20}")) { // matches() - sprawdza, czy tekst pasuje do wzorca
             komunikatLabel.setText("Login moze zawierac litery, cyfry, myślniki, podkreslniki (3-20 znakow).");
             return false;
         }
@@ -67,7 +65,6 @@ public class LogowanieKontroler {
             Stage stage = (Stage) loginField.getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch (Exception e) {
-            e.printStackTrace();
             komunikatLabel.setText("Blad ladowania widoku.");
         }
     }

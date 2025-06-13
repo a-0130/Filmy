@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="projektFilmy.Kontroler.UsunRezyseraKontroler"
+            stylesheets="@style.css"
+            maxWidth="500"
+            maxHeight="420">
+
+
+    <padding>
+        <Insets top="80" bottom="20" left="20" right="20"/>
+    </padding>
+
+    <top>
+        <HBox alignment="CENTER">
+            <Label text="Reżyser"
+                   style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #4a1c2d;"/>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox spacing="20" alignment="CENTER">
+            <HBox spacing="40" alignment="CENTER">
+                <!-- Dodawanie reżysera -->
+                <VBox spacing="10" alignment="CENTER">
+                    <Label text="Dodaj nowego reżysera:"/>
+                    <TextField fx:id="imieField" promptText="Imię" style="-fx-pref-width: 200px; -fx-pref-height: 30px;"/>
+                    <TextField fx:id="nazwiskoField" promptText="Nazwisko" style="-fx-pref-width: 200px; -fx-pref-height: 30px;"/>
+                    <Button text="Dodaj Reżysera" onAction="#dodajRezysera" style="-fx-pref-width: 200px; -fx-pref-height: 30px;"/>
+                </VBox>
+
+                <!-- Usuwanie reżysera -->
+                <VBox spacing="10" alignment="CENTER">
+                    <Label text="Wybierz reżysera do usunięcia:"/>
+                    <ComboBox fx:id="rezyserComboBox" style="-fx-pref-width: 200px; -fx-pref-height: 30px;"/>
+                    <Button text="Usuń Reżysera" onAction="#usunRezysera" style="-fx-pref-width: 200px; -fx-pref-height: 30px;"/>
+                </VBox>
+            </HBox>
+
+            <!-- Komunikat i przycisk Wróć -->
+            <VBox spacing="10" alignment="CENTER">
+                <Label fx:id="komunikatLabel" wrapText="true" style="-fx-text-fill: #ff005e;"/>
+                <Button text="Wróć do spisu filmow" onAction="#anulujRezyser"
+                        style="-fx-pref-width: 200px; -fx-pref-height: 30px;"/>
+            </VBox>
+        </VBox>
+    </center>
+
+</BorderPane>
